@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/load-balancer-name: your-existing-alb-name
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 8080}]'
+    alb.ingress.kubernetes.io/actions.weighted-routing: |
+      {
+        "Type": "forward",
+        "ForwardConfig": {
+          "TargetGroups": [
+            {
+              "ServiceName": "blue-service",
+              "ServicePort": "80",
+              "Weight": 100
+            },
+            {
+              "ServiceName": "green-service",
+              "ServicePort": "80",
+              "Weight": 0
+            }
+          ]
+        }
+      }
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /myapp
+            pathType: Prefix
+            backend:
+              service:
+                name: weighted-routing
+                port:
+                  name: use-annotation
