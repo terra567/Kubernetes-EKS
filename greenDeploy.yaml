@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: green
+      version: green
+  template:
+    metadata:
+      labels:
+        app: green
+        version: green
+    spec:
+      nodeSelector:
+        environment: green
+      containers:
+      - name: green
+        image: registry.k8s.io/ingress-nginx/e2e-test-echo:v1.1.3@sha256:77e8f7aa7e5651409cbe4ca38430e61828873c7df325e6f83c7345e34011f6b2
+        ports:
+        - containerPort: 80
