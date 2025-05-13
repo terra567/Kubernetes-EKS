@@ -59,7 +59,7 @@ NAME                     CLASS   HOSTS   ADDRESS                                
 deploystrategy-ingress   alb     *       [ALB-DNS-NAME]                            80      45m
 ```
 
-###Traffic Distribution Testing
+### Traffic Distribution Testing
 
 Testing traffic distribution with 100 requests shows the effectiveness of our weighted routing:
 
@@ -102,7 +102,7 @@ alb.ingress.kubernetes.io/actions.weighted-routing: |
   }
 ```
 
-**Canary Testing**
+### Canary Testing
 
 For gradual rollout:
 
