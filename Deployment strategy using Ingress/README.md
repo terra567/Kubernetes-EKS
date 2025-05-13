@@ -102,7 +102,7 @@ alb.ingress.kubernetes.io/actions.weighted-routing: |
   }
 ```
 
-###Canary Testing
+**Canary Testing**
 
 For gradual rollout:
 
