@@ -114,7 +114,7 @@ For gradual rollout:
 ## Clean Up
 
     
-kubectl delete ingress deploystrategy-ingress
-kubectl delete svc blue-service green-service
-kubectl delete deployment blue-deployment green-deployment
+- kubectl delete ingress deploystrategy-ingress
+- kubectl delete svc blue-service green-service
+- kubectl delete deployment blue-deployment green-deployment
 
